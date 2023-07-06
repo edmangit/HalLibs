@@ -1,0 +1,24 @@
+Check_Temperature() - Чтение ригистра 0x00 - результат 2 байта
+Check_Config() - Чтение ригистра 0x01 - результат 1 байт
+Check_Thyst() - Чтение ригистра 0x02 - результат 2 байта
+Check_Tos() - Чтение ригистра 0x03 - результат 2 байта
+Temp_convert_float() - Конвертация 2 байта - температура
+TosThyst_convert_float() - Преобразование 2 байт в температура
+Edit_Config() - изменение 1 байта
+Edit_Thyst() - изменение 2 байт
+Edit_Tos() - изменение 2 байт
+TosThyst_convert_Regs () - Преобразование значения в 2 байта
+
+EditCfgB0_1_2(РегистрКонфига, байт 0/1/2, значение)
+EditCfgB4_3(РегистрКонфига, значение)
+
+float Temperature = Temp_convert_float(Check_Temperature());
+float Thyst = TosThyst_convert_float(Check_Thyst());
+float Tos = TosThyst_convert_float(Check_Tos());
+
+Edit_Config(Value); Value = [0,255,1]
+Edit_Thyst(TosThyst_convert_Regs(Value)); Value = [-55.0,125,0.5]
+Edit_Tos(TosThyst_convert_Regs(Value)); Value = [-55.0,125,0.5]
+
+Edit_Config(EditCfgB0_1_2(Conff, 0, 1));
+Edit_Config(EditCfgB4_3(Conff, 3));

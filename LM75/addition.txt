@@ -1,0 +1,54 @@
+in main.h
+
+/* Private includes ----------------------------------------------------------*/
+/* USER CODE BEGIN Includes */
+#include "LM75.h"
+
+in main.c
+/* Private includes ----------------------------------------------------------*/
+/* USER CODE BEGIN Includes */
+#include <stdio.h>
+
+  /* USER CODE BEGIN 2 */
+  float Temperature = 0;
+  float Thyst = 0;
+  float Tos = 0;
+  uint8_t Conff = 0;
+
+while (1)
+  {
+	//Working with Temperature
+	Temperature = Temp_convert_float(Check_Temperature());
+	//Working with Thyst
+	Thyst = TosThyst_convert_float(Check_Thyst());
+	Edit_Thyst(TosThyst_convert_Regs(-35.0));
+	Thyst = TosThyst_convert_float(Check_Thyst());
+	Edit_Thyst(TosThyst_convert_Regs(80.0));
+	Thyst = TosThyst_convert_float(Check_Thyst());
+	//Working with Tos
+	Tos = TosThyst_convert_float(Check_Tos());
+	Edit_Tos(TosThyst_convert_Regs(-32.0));
+	Tos = TosThyst_convert_float(Check_Tos());
+	Edit_Tos(TosThyst_convert_Regs(75.0));
+	Tos = TosThyst_convert_float(Check_Tos());
+	//Working with Config
+	Edit_Config(0);
+	Conff = Check_Config();
+	Edit_Config(0b00011111);
+	Conff = Check_Config();
+	Edit_Config(0);
+	Conff = Check_Config();
+	Edit_Config(EditCfgB0_1_2(Conff, 0, 1));
+	Conff = Check_Config();
+	Edit_Config(EditCfgB4_3(Conff, 3));
+	Conff = Check_Config();
+	Edit_Config(EditCfgB0_1_2(Conff, 0, 0));
+	Conff = Check_Config();
+	Edit_Config(EditCfgB4_3(Conff, 0));
+	Conff = Check_Config();
+
+	HAL_Delay(500);
+    /* USER CODE END WHILE */
+
+    /* USER CODE BEGIN 3 */
+  }

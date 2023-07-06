@@ -1,0 +1,51 @@
+in main.h
+
+/* Private includes ----------------------------------------------------------*/
+/* USER CODE BEGIN Includes */
+#include "DS3231.h"
+
+in main.c
+/* Private includes ----------------------------------------------------------*/
+/* USER CODE BEGIN Includes */
+#include <stdio.h>
+
+  /* USER CODE BEGIN 2 */
+  uint8_t Seconds = 0;
+  uint8_t Minutes = 0;
+  uint8_t Hours = 0;
+  uint8_t Day = 0;
+  uint8_t Date= 0;
+  uint8_t Month = 0;
+  uint8_t Year = 0;
+
+  while (1)
+  {
+	  Seconds = DS3231_Read_Seconds();
+	  Minutes = DS3231_Read_Minutes();
+	  Hours = DS3231_Read_Hours();
+	  Day = DS3231_Read_Day();
+	  Date = DS3231_Read_Date();
+	  Month = DS3231_Read_Month();
+	  Year = DS3231_Read_Year();
+
+	  DS3231_Write_Seconds(30);
+	  DS3231_Write_Minutes(34);
+	  DS3231_Write_Hours(17);
+	  DS3231_Write_Day(3);
+	  DS3231_Write_Date(5);
+	  DS3231_Write_Month(7);
+	  DS3231_Write_Year(23);
+
+	  Seconds = DS3231_Read_Seconds();
+	  Minutes = DS3231_Read_Minutes();
+	  Hours = DS3231_Read_Hours();
+	  Day = DS3231_Read_Day();
+	  Date = DS3231_Read_Date();
+	  Month = DS3231_Read_Month();
+	  Year = DS3231_Read_Year();
+
+	  HAL_Delay(500);
+    /* USER CODE END WHILE */
+
+    /* USER CODE BEGIN 3 */
+  }
